@@ -13,10 +13,10 @@ app = Flask(__name__)
 ENV = 'prod'
 
 if ENV =='dev':
-    app.config.from_object('config.DevelopmentConfig')
+    #development configs
 
 else:
-    app.config.from_object('config.ProductionConfig')
+    #production configs
 
 
 db.init_app(app)
