@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% include 'plugins.html' %}
+    <script src="{{url_for('static', filename='js/jquery-3.6.0.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/userListActions.js')}}"></script>
+    <title>Home</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary py-3">
+        <div class="container-fluid">
+            <a href="/" class="navbar-brand display-2">ProcrastiNOT</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navmenu" aria-controls="navmenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navmenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="/logout" class="nav-link text-white">Log out</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="user-lists">
+        {% for list in user_lists %}
+            <div class="modal fade" id="{{list.modal_id}}">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="list-scrollbar" id="user-list">
+                                <div class="list-bg">
+                                    {% if list.bg_img == "bg-1" %}
+                                        <img src="{{url_for('static', filename='images/bg.jpg')}}"/>
+                                    {% elif list.bg_img == "bg-2" %}
+                                        <img src="{{url_for('static', filename='images/bg-2.jpg')}}"/>
+                                    {% elif list.bg_img == "bg-3" %}
+                                        <img src="{{url_for('static', filename='images/bg-3.jpg')}}"/>
+                                    {% elif list.bg_img == "bg-4" %}
+                                        <img src="{{url_for('static', filename='images/bg-4.jpg')}}"/>
+                                    {% else %}
+                                        <img src="{{url_for('static', filename='images/bg-5.jpg')}}"/>
+                                    {% endif %}
+                                </div>
+                                <div class="list-insert">
+                                    <form class="new-task-form">
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" name="task" id="desc{{list.id}}" placeholder="New Task" aria-label="New Task" aria-describedby="basic-addon2">
+                                            <div class="input-group-append">
+                                                <button type="submit" class="btn btn-primary list-submit-button" list_id="{{list.id}}">Add task</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="cool-seperator">
+                                </div>
+                                <div id="list{{list.id}}-contents">
+                                        {% for task in list.tasks %}
+                                            <div class="list-item" id="{{task.id}}">
+                                                <div class="row">
+                                                    <div class="col-sm-8" id="{{task.id}}-comp-status">
+                                                        {% if not task.completed %}
+                                                            <div class="task-desc-incomp">
+                                                                {{task.task_desc}}
+                                                            </div>
+                                                        {% else %}
+                                                        <div class="task-desc-comp">
+                                                            {{task.task_desc}}
+                                                        </div>
+                                                        {% endif %}
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <div class="list-actions">
+                                                            <button class="task-complete-button" data-task_id="{{task.id}}">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                                                                    <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+                                                                  </svg>
+                                                            </button>
+                                                            <button class="task-delete-button" data-task_id="{{task.id}}">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                                                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                                                  </svg>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="cool-seperator"></div>
+                                            </div>
+                                            
+                                        {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+        <div class="container mt-lg-2">
+            <div id="greeting-message">
+                <p class="display-3 greeting-name"><span id="greeting-name">Hello {{user.first_name}}</span></p>
+            </div>
+            <div class="container">
+                <div class="d-md-flex justify-content-between align-items-center">
+                    <h1 style="font-size: 40pxrem; margin-left: 125px;">My Lists</h1>
+                    <div id="new-list-option">
+                        <button type="button" onclick="location.href = 'newlist';" class="btn btn-success btn-lg">New list</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {% for list in user_lists %}
+                <div class="col-lg-4 mt-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">{{list.title}}</h4>
+                            <div class="card-footer">
+                                <div class="text-center">
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#{{list.modal_id}}" class="btn btn-success">Tasks</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% include 'bodyplugins.html' %}
+</body>
+</html>

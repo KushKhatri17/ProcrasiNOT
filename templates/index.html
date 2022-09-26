@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% include 'plugins.html' %}
+    <script src="{{url_for('static', filename='js/jquery-3.6.0.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/index.js')}}"></script>
+    <title>ProcrastiNOT</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary py-3">
+        <div class="container-fluid">
+            <a href="/" class="navbar-brand display-2">ProcrastiNOT</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navmenu" aria-controls="navmenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navmenu">
+                <ul class="navbar-nav ms-auto">
+                    {% if current_user.is_authenticated %}
+                        <li class="nav-item">
+                            <a href="/userDashboard.html?id={{user_id}}" class="nav-link text-white">Dashboard</a> 
+                        </li>
+                        <li class="nav-item">
+                            <a href="/logout" class="nav-link text-white">Log out</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a href="/signup" class="nav-link text-white">Sign up</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/login" class="nav-link text-white">Log in</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="bg-primary text-light p-5 pt-lg-5 text-center text-sm-start">
+        <div class="container">
+            <div class="d-sm-flex align-items-center justify-content-between">
+                <div>
+                    <h1 class="display-2"><span class="text-warning">Organise</span> your day</h1>
+                    <p class="lead my-4 info-main">
+                        Keep track of daily tasks by easily organising them. 
+                        From work to hobbies, control all your tasks, completing each one on time.
+                    </p>
+                    <button class="btn btn-warning btn-lg" id="get-started-btn">Get Started</button>
+                </div>
+                <img class="img-fluid w-50 d-none d-sm-block" src="{{url_for('static', filename='images/homepage-list.svg')}}"/>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-white bg-dark p-3 text-center">
+        <div class="container">
+                <p class="lead mb-1 info-demo">Use the demo list below to get started with ProcrastiNOT</p>
+                <p class="lead mb-0 info-demo">Start by noting down some activites for today!</p>
+        </div>
+    </div>
+
+    <div id="demo-list-section">
+        <div class="list-scrollbar" id="demo-list">
+            <div class="list-bg">
+                <img src="{{url_for('static', filename='images/bg.jpg')}}" />
+            </div>
+            <div class="list-insert">
+                <form class="new-task-form">
+                    <label for="task">Enter a new task</label>
+                    <input type="text" name="task" id="task" placeholder="New Task">
+                    <button type="submit" id="list-submit-button">Add task</button>
+                </form>
+            </div>
+            <div class="cool-seperator"></div>
+            <div id="demo-list-contents">
+            </div>
+        </div>
+    </div>
+
+    <div class="text-white bg-dark p-3 text-center">
+        <div class="container">
+                <p class="lead mb-1 info-demo">To save your list create an account</p>
+                <p class="lead mb-0 info-demo">An account also allows you to create and save multiple lists</p>
+        </div>
+    </div>
+    {% include 'footer.html' %}
+
+    {% include 'bodyplugins.html' %}
+</body>
+</html>

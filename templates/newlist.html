@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    {% include 'plugins.html' %}
+    <script src="{{url_for('static', filename='js/jquery-3.6.0.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/newList.js')}}"></script>
+    <title>New List</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary py-3">
+        <div class="container-fluid">
+            <a href="/" class="navbar-brand display-2">ProcrastiNOT</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navmenu" aria-controls="navmenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navmenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="/userDashboard.html?id={{user_id}}" class="nav-link text-white">Dashboard</a> 
+                    </li>
+                    <li class="nav-item">
+                        <a href="/logout" class="nav-link text-white">Log out</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div id="new-list-contents">
+        <h1 id="new-list-heading">New List</h1>
+        <form id="new-list-form">
+            <div class="form-group form-input">
+                <label for="title">List title</label>
+                <input type="text" class="form-control" name="title" id="title">
+                <div id="error-msg-list-title"></div>
+                <br>
+            </div>
+            <div class="form-group bg-select">
+                <label for="list-bg">Select list background</label>
+                <select class="form-control" id="list-bg" onchange="displayImg()" required>
+                    <option value="" selected disabled hidden>Select Image</option>
+                    <option value="bg-1">Pink Clouds</option>
+                    <option value="bg-2">Pine Forest</option>
+                    <option value="bg-3">Sunset Birds</option>
+                    <option value="bg-4">Burning Blue</option>
+                    <option value="bg-5">City Skyline</option>
+                </select>
+            </div>
+            <div id="error-msg-no-img"></div>
+            <br>
+            <div id="list-bg-preview">
+
+            </div>
+            <br>
+            <div id="bttn-holder">
+                <button type="button"  id="submit-button" class="btn btn-primary">Create List</button>
+            </div>
+        </form>
+    </div>
+    {% include 'footer.html' %}
+    {% include 'bodyplugins.html' %}
+</body>
+</html>

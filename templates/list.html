@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="{{url_for('static', filename='js/jquery-3.6.0.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/newItem.js')}}"></script>
+    <title>Document</title>
+</head>
+<body>
+    <h1>LIST</h1>
+    {{list.title}}
+    <div>
+        <h1>Add new item</h1>
+        <form>
+            <label for="task">Task</label>
+            <input type="text" name="task" id="task">
+            <br>
+            <button type="submit" id="submit-button">submit</button>
+        </form>
+    </div>
+    <div id="list-items">
+        <h2>ITEMS</h2>
+        {% for task in tasks %}
+            <p>{{task.task_desc}}</p>
+        {% endfor %}
+    </div>
+</body>
+</html>

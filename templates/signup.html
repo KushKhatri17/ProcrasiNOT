@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% include 'plugins.html' %}    
+    <script src="{{url_for('static', filename='js/jquery-3.6.0.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/register.js')}}"></script>
+    <title>Register</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary py-3">
+        <div class="container-fluid">
+            <a href="/" class="navbar-brand display-2">ProcrastiNOT</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navmenu" aria-controls="navmenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navmenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="/login" class="nav-link text-white">Log in</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="login-container-1">
+        <div class="login-container-2">
+            <h1 id="login-heading">Register</h1>    
+            <form>
+                <div class="form-group">
+                    <label for="exampleInputFname1">Firstname</label>
+                    <input type="text" name="first_name" class="form-control" id="first_name" placeholder="Enter your firstname">
+                    <div class="error-msg-firstname"></div>
+                    <br>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputLname1">Lastname</label>
+                    <input type="text" name="last_name" class="form-control" id="last_name" placeholder="Enter your lastname">
+                    <div class="error-msg-lastname"></div>
+                    <br>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Email address</label>
+                  <input type="email" name="email" class="form-control" id="email" placeholder="Enter your email">
+                  <div class="error-msg-email"></div>
+                  <br>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Password</label>
+                  <input type="password" name="password" class="form-control" id="password" placeholder="Create your password">
+                  <div class="error-msg-password"></div>
+                  <br>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Confirm password</label>
+                    <input type="password" name="password-con" class="form-control" id="password-con" placeholder="Re-type your password">
+                    <div class="error-msg-password-con"></div>
+                    <br>
+                  </div>
+                <button type="submit" id="submit-button" class="btn btn-primary">Submit</button>
+                <div class="error-msg-register"></div>
+            </form>
+        </div>
+        <div id="laptop-img">
+            <img src="{{url_for('static', filename='images/laptop2.png')}}" class="img-fluid">
+        </div>
+    </div>
+    {% include 'footer.html' %}
+
+    {% include 'bodyplugins.html' %}
+</body>
+</html>
