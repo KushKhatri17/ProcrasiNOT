@@ -1,7 +1,7 @@
 # ProcrasiNOT
 Personal Project to learn about web dev.
 
-Hosted of render now instead of Heroku https://procrasinot.onrender.com/
+Hosted on render now instead of Heroku https://procrasinot.onrender.com/
 
 Render may make the hosted instance inactive, if this is the case then it will take about a minute to load the website.
 
